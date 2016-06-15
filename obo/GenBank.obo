@@ -1,0 +1,48 @@
+format-version: 1.2
+default-namespace: genbank
+ontology: GB
+data-version: releases/2016-01-17
+date: 17:01:2016
+
+[Term]
+id: GB:0000001
+name: project_type
+def: "The type of bioproject"
+
+[Term]
+id: GB:0000002
+name: locus_tag
+def: "Prefix for every gene in genome"
+
+[Term]
+id: GB:0000003
+name: release_date
+def: "Date that data associated with BioProject is released."
+
+[Term]
+id: GB:0000004
+name: funding
+def: "List of grants that supported the project"
+
+[Term]
+id: GB:0000005
+name: consortium
+def: "Project consortium"
+
+[Term]
+id: GB:0000006
+name: data_provider
+def: "Name(s) of data provider(s)"
+
+[Term]
+id: GB:0000007
+name: data_provider_URL
+def: "URL for data provider"
+
+[Term]
+id: GB:0000008
+name: genome_coverage
+def: "nX coverage, e.g. 100X."
+
+
+

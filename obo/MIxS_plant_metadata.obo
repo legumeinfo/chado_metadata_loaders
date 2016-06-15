@@ -1,0 +1,818 @@
+format-version: 1.2
+data-version: releases/2016-01-17
+date: 17:01:2016
+default-namespace: SEQmeta
+ontology: SEQmeta
+
+
+[Term]
+id: SEQMeta:0000001
+name: bioproject_accession
+def: "Accession for the GenBank BioProject record."
+
+[Term]
+id: SEQmeta:0000002
+name: investigation_type
+def: "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote, bacteria, virus, plasmid, organelle,  metagenome, mimarks-survey, or mimarks-specimen"
+
+[Term]
+id: SEQmeta:0000003
+name: project_name
+def: "Name of the project within which the sequencing was organized."
+
+[Term]
+id: SEQmeta:0000004
+name: experimental_factor
+def: "Experimental factors are essentially the variable aspects of an experiment design which can be used to describe an experiment, or set of experiments, in an increasingly detailed manner. This field accepts ontology terms from Experimental Factor Ontology (EFO) and/or Ontology for Biomedical Investigations (OBI). For a browser of EFO (v 2.43) terms, please see http://purl.bioontology.org/ontology/EFO; for a browser of OBI (v 2013-10-25) terms please see http://purl.bioontology.org/ontology/OBI"
+
+[Term]
+id: SEQmeta:0000005
+name: project_PI
+def: "Name of the principal investigator for the project."
+
+[Term]
+id: SEQmeta:0000006
+name: contributors
+def: "List of names of contributors to this project."
+
+[Term]
+id: SEQmeta:0000007
+name: project_description
+def: "Free text description of the project."
+
+[Term]
+id: SEQmeta:0000008
+name: project_start_date
+def: "Date work on the project started".
+
+[Term]
+id: SEQmeta:0000009
+name: publication
+def: "A publication associated with a project (or any other data type)".
+
+
+
+[Term]
+id: SEQmeta:0000100
+name: taxid.
+def: "NCBI taxon id of the subject, e.g. 4577"
+
+[Term]
+id: SEQmeta:0000101
+name: common_name
+def: "Common name of the subject organism, e.g. maize."
+
+[Term]
+id: SEQmeta:0000102
+name: subspecific_genetic_lineage
+def: "This should provide further information about the genetic distinctness of this lineage by recording additional information i.e biovar, serovar, serotype, biovar, or any relevant genetic typing schemes like Group I plasmid. It can also contain alternative taxonomic information."
+
+[Term]
+id: SEQmeta:0000103
+name: infraspecific_name
+def: "Taxonomic information about the organism below subspecies level."
+
+[Term]
+id: SEQmeta:0000104
+name: infraspecific_rank
+def: "Taxonomic rank information about the organism below subspecies level, such as variety, form, rank etc. - FOR PLANTS SHOULD BE CULTIVAR, VARIETY, LAB STOCK, OR INBRED LINE."
+
+[Term]
+id: SEQmeta:0000105
+name: ploidy
+def: "The ploidy level of the genome (e.g. allopolyploid, haploid, diploid, triploid, tetraploid). It has implications for the downstream study of duplicated gene and regions of the genomes (and perhaps for difficulties in assembly). For terms, please select terms listed under class ploidy (PATO:001374) of Phenotypic Quality Ontology (PATO), and for a browser of PATO (v 2013-10-28) please refer to http://purl.bioontology.org/ontology/PATO."
+
+[Term]
+id: SEQmeta:0000106
+name: extrachrom_elements
+def: "Describe any extra or missing chromosomes or extra-chromosomal elements."
+
+[Term]
+id: SEQmeta:0000107
+name: haploid_chromosome_count
+def: "1N count"
+
+[Term]
+id: SEQmeta:0000108
+name: num_replicons
+def: "Reports the number of replicons in a nuclear genome of eukaryotes, in the genome of a bacterium or archaea or the number of segments in a segmented virus. Always applied to the haploid chromosome count of a eukaryote."
+
+[Term]
+id: SEQmeta:0000109
+name: estimated_size
+def: "The estimated size of the genome prior to sequencing. Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period. The haploid genome size."
+
+[Term]
+id: SEQmeta:0000110
+name: genotype
+def: "Observed genotype"
+
+[Term]
+id: SEQmeta:0000111
+name: genotype_info
+def: "E.g. known alleles"
+
+[Term]
+id: SEQmeta:0000112
+name: phenotype
+def: "Phenotype of the subject; for Phenotypic quality Ontology (PATO) (v 2013-10-28) terms, please see http://purl.bioontology.org/ontology/PATO."
+
+[Term]
+id: SEQmeta:0000113
+name: population
+def: "Subject population."
+
+[Term]
+id: SEQmeta:000114
+name: ancestral_data
+def: "Information about either pedigree or other description of ancestral information (e.g. parental variety in case of mutant or selection)."
+
+[Term]
+id: SEQmeta:0000115
+name: source_mat_id
+def: "A unique identifier assigned to a material sample (as defined by http://rs.tdwg.org/dwc/terms/materialSampleID, and as opposed to a particular digital record of a material sample) used for extracting nucleic acids, and subsequent sequencing. The identifier can refer either to the original material collected or to any derived sub-samples. The INSDC qualifiers /specimen_voucher, /bio_material, or /culture_collection may or may not share the same value as the source_mat_id field. For instance, the /specimen_voucher qualifier and source_mat_id may both contain 'UAM:Herps:14' , referring to both the specimen voucher and sampled tissue with the same identifier. However, the /culture_collection qualifier may refer to a value from an initial culture (e.g. ATCC:11775) while source_mat_id would refer to an identifier from some derived culture from which the nucleic acids were extracted (e.g. xatc123 or ark:/2154/R2)."
+
+[Term]
+id: SEQmeta:0000116
+name: source_mat_derived_id
+def: "If source material has been through multiple generations since its origin, provide its identifier in the form, source:collection:id. If there is no specific collection, then use,source:id. For example, LauterLab:3489."
+
+[Term]
+id: SEQmeta:0000117
+name: age
+def: "Age of subject at the time of sampling; relevant scale depends on species and study."
+
+[Term]
+id: SEQmeta:0000118
+name: life_stage
+def: "Description of life stage of subject. Recommend using PO."
+
+[Term]
+id: SEQmeta:0000119
+name: cell_cycle
+def: "Cell cycle that was sampled."
+
+[Term]
+id: SEQmeta:0000120
+name: height
+def: "The height of subject at the time of sampling, if different from the length."
+
+[Term]
+id: SEQmeta:0000121
+name: length
+def: "The length of subject at the time of sampling, if different from the height."
+
+[Term]
+id: SEQmeta:0000122
+name: health_disease_stat
+def: "List of diseases with which the subject has been diagnosed; can include multiple diagnoses; the value of the field depends on subject."
+
+[Term]
+id: SEQmeta:0000123
+name: pathogenicity
+def: "To what is the entity pathogenic."
+
+[Term]
+id: SEQmeta:0000124
+name: biotic_relationship
+def: "Is it free-living or in a host and if the latter what type of relationship is observed."
+
+[Term]
+id: SEQmeta:0000125
+name: subject_host
+def: "Host from which the subject was obtained."
+
+[Term]
+id: SEQmeta:0000126
+name: subject_lab_host
+def: "Laboratory host used to propagate the subject."
+
+[Term]
+id: SEQmeta:0000127
+name: morphology
+def: "Relevant morphology of the subject, e.g. spike inflorescence."
+
+[Term]
+id: SEQmeta:0000128
+name: growth_habit
+def: "Characteristic shape, appearance, or growth form of a plant species."
+
+[Term]
+id: SEQmeta:0000129
+name: misc_param
+def: "Any other measurement performed or parameter collected, that is not listed here."
+
+[Term]
+id: SEQmeta:0000130
+name: subject_description
+def: "A free text description of the seed and/or plant that was sampled."
+
+
+
+[Term]
+id: SEQmeta:0000200
+name: sample_name
+def: "Short unique name of biosample that was sequenced."
+
+[Term]
+id: SEQmeta:0000201
+name: sample_title
+def: "Longer title for biosample."
+
+[Term]
+id: SEQmeta:0000202
+name: biosample_accession
+def: "Accession for the GenBank BioMaterial record."
+
+[Term]
+id: SEQmeta:0000203
+name: sample_type
+def: "Sample type, such as cell culture, mixed culture, tissue sample, whole organism, single cell, metagenomic assembly; described by GenBank Plant template for BioSamples."
+
+[Term]
+id: SEQmeta:0000205
+name: capture_status
+def: Reason for the sample (e.g. disease outbreak)
+
+[Term]
+id: SEQmeta:0000206
+name: ref_biomaterial
+def: "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material."
+
+[Term]
+id: SEQmeta:0000207
+name: isol_growth_condt
+def: "Growth conditions for the isolate."
+
+[Term]
+id: SEQmeta:0000208
+name: samp_collect_device
+def: "The method or device employed for collecting the sample."
+
+[Term]
+id: SEQmeta:0000209
+name: samp_mat_process
+def: "Any processing applied to the sample during or after retrieving the sample from environment. This field accepts OBI, for a browser of OBI (v 2013-10-25) terms please see http://purl.bioontology.org/ontology/OBI."
+
+[Term]
+id: SEQmeta:0000210
+name: samp_size
+def: "Amount or size of sample (volume, mass or area) that was collected."
+
+[Term]
+id: SEQmeta:0000211
+name: organism_count
+def: "Total count of any organism per gram or volume of sample, should include name of organism followed by count; can include multiple organism counts."
+
+[Term]
+id: SEQmeta:0000212
+name: plant_structure
+def: "Name of plant structure that the sample was obtained from; for Plant Ontology (PO) (v 20) terms, see http://purl.bioontology.org/ontology/PO, for anatomical structures in animals see http://uberon.github.io/"
+
+[Term]
+id: SEQmeta:0000213
+name: body_phenotype
+def: "Phenotype of the plant for which the sample was obtained from, e.g. purple corolla, fruit diameter, circular leaf shape;  Recommned us of Plant Trait Ontology (TO), Phenotypic Quality Ontology (PATO), or other ontology."
+
+[Term]
+id: SEQmeta:0000214
+name: cell_line
+def: "The sample cell line."
+
+[Term]
+id: SEQmeta:0000215
+name: cell_type
+def: "Type of cell represented by the sample."
+
+[Term]
+id: SEQmeta:0000216
+name: emperature
+def: "Temperature of sample at time of collection."
+
+[Term]
+id: SEQmeta:0000217
+name: storage_duration
+def: "Duration sample was stored."
+
+[Term]
+id: SEQmeta:0000218
+name: storage_location
+def: "Location at which sample was stored, usually name of a specific freezer/room."
+
+[Term]
+id: SEQmeta:0000219
+name: lat_lon
+def: "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system."
+
+[Term]
+id: SEQmeta:0000220
+name: geo_location
+def: "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)."
+
+[Term]
+id: SEQmeta:0000221
+name: depth
+def: "Depth is defined as the vertical distance below local surface, e.g. for sediment or soil samples depth is measured from sediment or soil surface, respectivly. Depth can be reported as an interval for subsurface samples."
+
+[Term]
+id: SEQmeta:0000222
+name: alt_elev
+def: "The elevation of the sampling site as measured by the vertical distance from mean sea level."
+
+[Term]
+id: SEQmeta:0000223
+name: collection_date
+def: "When the sample was collected."
+
+[Term]
+id: SEQmeta:0000224
+name: env_biome
+def: "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO."
+
+[Term]
+id: SEQmeta:0000225
+name: env_feature
+def: "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO."
+
+[Term]
+id: SEQmeta:0000226
+name: env_material
+def: "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO."
+
+[Term]
+id: SEQmeta:0000227
+name: collected_by
+def: "Name of person(s) or institute who collected the specimen."
+
+[Term]
+id: SEQmeta:0000228
+name: identified_by
+def: "Name of the expert who identified the specimen taxonomically."
+
+[Term]
+id: SEQmeta:0000229
+name: treatment
+def: "Ontology terms that describes the plant treatment. Recommend use of EO (Plant Treatment Ontology) or other ontology. More specific fields in the treatment section can be used in addition to or in place of this field."
+
+[Term]
+id: SEQmeta:0000230
+name: tissue_culture_growth_media
+def: "Name, identifier, or recipe for tissue culture growth medium."
+
+[Term]
+id: SEQmeta:0000231
+name: air_temperature_regimen
+def: "Information about treatment involving an exposure to varying temperatures; should include the temperature, treatment duration, interval and total experimental duration; can include different temperature regimens."
+
+[Term]
+id: SEQmeta:0000232
+name: antibiotic_regimen
+def: "Information about treatment involving antibiotic administration; should include the name of antibiotic, amount administered, treatment duration, interval and total experimental duration; can include multiple antibiotic regimens."
+
+[Term]
+id: SEQmeta:0000233
+name: chemical_administration
+def: "List of chemical compounds administered to the host or site where sampling occurred, and when (e.g. antibiotics, N fertilizer, air filter); can include multiple compounds. For Chemical Entities of Biological Interest ontology (CHEBI) (v 111), http://purl.bioontology.org/ontology/CHEBI."
+
+[Term]
+id: SEQmeta:0000234
+name: chemical_mutagen
+def: "Treatment involving use of mutagens; should include the name of mutagen, amount administered, treatment duration, interval and total experimental duration; can include multiple mutagen regimens."
+
+[Term]
+id: SEQmeta:0000235
+name: climate_environment
+def: "Treatment involving an exposure to a particular climate; can include multiple climates."
+
+[Term]
+id: SEQmeta:0000236
+name: fertilizer_regimen
+def: "Information about treatment involving the use of fertilizers; should include the name fertilizer, amount administered, treatment duration, interval and total experimental duration; can include multiple fertilizer regimens."
+
+[Term]
+id: SEQmeta:0000237
+name: fungicide_regimen
+def: "Information about treatment involving use of fungicides; should include the name of fungicide, amount administered, treatment duration, interval and total experimental duration; can include multiple fungicide regimens."
+
+[Term]
+id: SEQmeta:0000238
+name: gaseous_environment
+def: "Use of conditions with differing gaseous environments; should include the name of gaseous compound, amount administered, treatment duration, interval and total experimental duration; can include multiple gaseous environment regimens."
+
+[Term]
+id: SEQmeta:0000239
+name: gravity
+def: "Information about treatment involving use of gravity factor to study various types of responses in presence, absence or modified levels of gravity; can include multiple treatments."
+
+[Term]
+id: SEQmeta:0000240
+name: growth_hormone_regimen
+def: "Information about treatment involving use of growth hormones; should include the name of growth hormone, amount administered, treatment duration, interval and total experimental duration; can include multiple growth hormone regimens."
+
+[Term]
+id: SEQmeta:0000241
+name: growth_media
+def: "Information about growth media for growing the plants or tissue cultured samples."
+
+[Term]
+id: SEQmeta:0000242
+name: herbicide_regimen
+def: "Information about treatment involving use of herbicides; information about treatment involving use of growth hormones; should include the name of herbicide, amount administered, treatment duration, interval and total experimental duration; can include multiple regimens."
+
+[Term]
+id: SEQmeta:0000243
+name: humidity_regimen
+def: "Information about treatment involving an exposure to varying degree of humidity; information about treatment involving use of growth hormones; should include amount of humidity administered, treatment duration, interval and total experimental duration; can include multiple regimens."
+
+[Term]
+id: SEQmeta:0000244
+name: sample_description
+def: "Free text description of the sample."
+
+[Term]
+id: SEQmeta:0000245
+name: developmental_stage
+def: "Free text description of the sample developmental stage."
+
+
+
+[Term]
+id: SEQmeta:0000302
+name: isolate
+def: "The sample isolate."
+
+[Term]
+id: SEQmeta:0000304
+name: ecotype
+def: "The sample ecotype."
+
+[Term]
+id: SEQmeta:0000309
+name: biomaterial_provider
+def: "Who provided the sample."
+
+[Term]
+id: SEQmeta:0000310
+name: culture_collection
+def: "Name of the source of the culture and its unique identifier."
+
+
+
+[Term]
+id: SEQmeta:0000400
+name: nucl_acid_ext
+def: "Link to a literature reference, electronic resource or a standard operating procedure (SOP) for nucleic acid extraction."
+
+[Term]
+id: SEQmeta:0000401
+name: nucl_acid_amp
+def: "Link to a literature reference, electronic resource or a standard operating procedure (SOP) for nucleic acid amplification."
+
+[Term]
+id: SEQmeta:0000402
+name: lib_size
+def: "Total number of clones in the library prepared for the project."
+
+[Term]
+id: SEQmeta:0000403
+name: lib_reads_seqd
+def: "Total number of clones sequenced from the library."
+
+[Term]
+id: SEQmeta:0000404
+name: lib_const_meth
+def: "Library construction method used for clone libraries."
+
+[Term]
+id: SEQmeta:0000405
+name: lib_vector
+def: "Cloning vector type(s) used in construction of libraries."
+
+[Term]
+id: SEQmeta:0000406
+name: lib_screen
+def: "Specific enrichment or screening methods applied before and/or after creating clone libraries."
+
+[Term]
+id: SEQmeta:0000407
+name: target_gene
+def: "Targeted gene or locus name for marker gene studies."
+
+[Term]
+id: SEQmeta:0000408
+name: target_subfragment
+def: "Name of subfragment of a gene or locus. Important to e.g. identify special regions on marker genes like V6 on 16S rRNA."
+
+[Term]
+id: SEQmeta:0000409
+name: pcr_primers
+def: "PCR primers that were used to amplify the sequence of the targeted gene, locus or subfragment. This field should contain all the primers used for a single PCR reaction if multiple forward or reverse primers are present in a single PCR reaction. The primer sequence should be reported in uppercase letters."
+
+[Term]
+id: SEQmeta:0000410
+name: mid
+def: "Molecular barcodes, called Multiplex Identifiers (MIDs), that are used to specifically tag unique samples in a sequencing run. Sequence should be reported in uppercase letters."
+
+[Term]
+id: SEQmeta:0000411
+name: adapters
+def: "Adapters provide priming sequences for both amplification and sequencing of the sample-library fragments. Both adapters should be reported; in uppercase letters."
+
+[Term]
+id: SEQmeta:0000412
+name: pcr_cond
+def: "Description of reaction conditions and components for PCR in the form of 'initial denaturation:94degC_1.5min; annealing=...'"
+
+[Term]
+id: SEQmeta:0000413
+name: seq_meth
+def: "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid."
+
+[Term]
+id: SEQmeta:0000414
+name: seq_quality_check
+def: "Indicate if the sequence has been called by automatic systems (none) or undergone a manual editing procedure (e.g. by inspecting the raw data or chromatograms). Applied only for sequences that are not submitted to SRA,ENA or DRA."
+
+[Term]
+id: SEQmeta:0000415
+name: chimera_check
+def: "A chimeric sequence, or chimera for short, is a sequence comprised of two or more phylogenetically distinct parent sequences. Chimeras are usually PCR artifacts thought to occur when a prematurely terminated amplicon reanneals to a foreign DNA strand and is copied to completion in the following PCR cycles. The point at which the chimeric sequence changes from one parent to the next is called the breakpoint or conversion point."
+
+[Term]
+id: SEQmeta:0000416
+name: assembly
+def: "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation."
+
+[Term]
+id: SEQmeta:0000417
+name: assembly_name
+def: "Name/version of the assembly provided by the submitter that is used in the genome browsers and in the community."
+
+[Term]
+id: SEQmeta:0000418
+name: finishing_strategy
+def: "Was the genome project intended to produce a complete or draft genome, Coverage, the fold coverage of the sequencing expressed as 2x, 3x, 18x etc, and how many contigs were produced for the genome."
+
+[Term]
+id: SEQmeta:0000420
+name: release_date
+def: "Date that a dataset was released."
+
+[Term]
+id: SEQmeta:0000421
+name: library_ID
+def: "A unique identifier for the library."
+
+[Term]
+id: SEQmeta:0000422
+name: library_type
+def: "RNA/DNA"
+
+[Term]
+id: SEQmeta:0000423
+name: coverage
+def: "Estimated percent of genome covered by assembly."
+
+[Term]
+id: SEQmeta:0000424
+name: genome_alignment
+def: "Assembly used to anchor, order and orient contigs and scaffolds."
+
+[Term]
+id: SEQmeta:0000425
+name: seq_service_provider
+def: "Name of institute, company, et cetera that did the sequencing."
+
+[Term]
+id: SEQmeta:0000426
+name: seq_hardware
+def: "Sequencing hardware."
+
+[Term]
+id: SEQmeta:0000427
+name: seq_chemistry
+def: "Sequencing chemistry."
+
+[Term]
+id: SEQmeta:0000428
+name: seq_chemistry_version
+def: "Version of sequencing chemistry."
+
+
+
+[Term]
+id: SEQmeta:0000500
+name: annotation_name
+def: "Gene model set name and version."
+
+[Term]
+id: SEQmeta:0000501
+name: source
+def: "The assembly name and version used to generate this gene model set."
+
+[Term]
+id: SEQmeta:0000502
+name: software
+def: "The name and version of the software used to generate this gene model set."
+
+[Term]
+id: SEQmeta:0000504
+name: database
+def: "The annotation database."
+
+[Term]
+id: SEQmeta:0000505
+name: database_algorithm
+def: "The annotation database algorithm."
+
+[Term]
+id: SEQmeta:0000506
+name: database_queries
+def: "The annotation database queries."
+
+[Term]
+id: SEQmeta:0000508
+name: search_parameters
+def: "he annotation search parameters."
+
+
+
+
+[Term]
+id: SEQmeta:0000600
+name: cegs
+def: "Percentage of Core Eukaryotic Genes (CEGs) represented in a genome assembly."
+
+[Term]
+id: SEQmeta:0000601
+name: perc_genome_organelle_orthologs
+def: "Percentage of genome assembly with organellar gene orthologs (normally encoded by an organelle, not organellar proteins encoded in nuclear genome)."
+
+[Term]
+id: SEQmeta:0000602
+name: aligned_seq_optical
+def: "Total aligned sequence for a genome assembly which is aligned to an optical map."
+
+[Term]
+id: SEQmeta:0000603
+name: aligned_seq
+def: "Total aligned sequence"
+
+[Term]
+id: SEQmeta:0000604
+name: perc_aligned_seq
+def: "Percentage of sequence for a genome assembly aligned (calculated: total scaffold length/total aligned sequence)."
+
+[Term]
+id: SEQmeta:0000605
+name: gap_num
+def: "Number of gaps in a genome assembly."
+
+[Term]
+id: SEQmeta:0000606
+name: total_gap_length
+def: "Total gap length in a genome assembly."
+
+[Term]
+id: SEQmeta:0000607
+name: perc_seq_scaffold
+def: "Percentage of a genome assembly in scaffolded contigs."
+    
+[Term]
+id: SEQmeta:0000608
+name: perc_seq_unscaffold
+def: "Percentage of a genome ssembly in UNscaffolded contigs."
+    
+[Term]
+id: SEQmeta:0000609
+name: total_scaff_length
+def: "Total length of scaffolds in a genome assembly."
+   
+[Term]
+id: SEQmeta:0000610
+name: longest_scaff
+def: "Longest scaffold in a genome assembly."
+
+[Term]
+id: SEQmeta:0000611
+name: shortest_scaff
+def: "Shortest scaffold in a genome assembly."
+   
+[Term]
+id: SEQmeta:0000612
+name: N50_scaff_length
+def: "N50 scaffold length for a genome assembly. (The length of scaffold which takes the sum length (summing from longest to shortest scaffold) past 50% of the total assembly size.)"
+
+[Term]
+id: SEQmeta:0000613
+name: N50_scaff_count
+def: "N50 scaffold count for a genome assembly. (How many scaffolds are counted in reaching the N50 threshold.)"
+
+[Term]
+id: SEQmeta:0000614
+name: N90_scaff_length
+def: "N90 scaffold length for a genome assembly. (The length of scaffold which takes the sum length (summing from longest to shortest scaffold) past 50% of the total assembly size.)"
+
+[Term]
+id: SEQmeta:0000615
+name: N90_scaff_count
+def: "N90 scaffold count for a genome assembly. (How many scaffolds are counted in reaching the N50 threshold.)"
+
+[Term]
+id: SEQmeta:0000616
+name: mean_scaff_length
+def: "Mean scaffold length in a genome assembly."
+
+[Term]
+id: SEQmeta:0000617
+name: median_scaff_length
+def: "Median scaffold length in a genome assembly."
+    
+[Term]
+id: SEQmeta:0000618
+name: scaff_num
+def: "Total number of scaffolds in a genome assembly."
+               
+[Term]
+id: SEQmeta:0000619
+name: scaff_ns
+def: "Scaffold %N for a genome assembly. (Percentage of ambiguous bases (Ns) in scaffold sequences.)"
+     
+[Term]
+id: SEQmeta:0000620
+name: ave_contigs_per_scaff
+def: "Average number of contigs per scaffold in a genome assembly."
+     
+[Term]
+id: SEQmeta:0000622
+name: longest_contig
+def: "Longest contig in a genome assembly."
+
+[Term]
+id: SEQmeta:0000623
+name: shortest_contig
+def: "Shortest contig in a genome assembly."
+
+[Term]
+id: SEQmeta:0000624
+name: mean_contig_length
+def: "Mean contig length in a genome assembly."
+
+[Term]
+id: SEQmeta:0000625
+name: median_contig_length
+def: "Median contig length in a genome assembly."
+    
+[Term]
+id: SEQmeta:0000626
+name: N50_contig_length
+def: "N50 contig length for a genome assembly. (The length of contig which takes the sum length (summing from longest to shortest contig) past 50% of the total assembly size.)"
+
+[Term]
+id: SEQmeta:0000627
+name: N50_contig_count
+def: "N50 contig count for a genome assembly. (How many contig are counted in reaching the N50 threshold.)"
+
+[Term]
+id: SEQmeta:0000628
+name: N90_contig_length
+def: "N90 contig length for a genome assembly. (The length of contig which takes the sum length (summing from longest to shortest contig) past 50% of the total assembly size.)"
+
+[Term]
+id: SEQmeta:0000629
+name: N90_contig_count
+def: "N90 contig count for a genome assembly. (How many contig are counted in reaching the N50 threshold.)"
+
+[Term]
+id: SEQmeta:0000630
+name: contig_num
+def: "Total number of contigs in a genome assembly."
+               
+[Term]
+id: SEQmeta:0000631
+name: contig_ns
+def: "Contig %N for a genome assembly. (Percentage of ambiguous bases (Ns) in contig sequences.)"
+
+[Term]
+id: SEQmeta:0000632
+name: total_pseudomolecule_length
+def: "Total sequence represented by pseudomolecules."
+
+[Term]
+id: SEQmeta:0000633
+name: total_contig_length
+def: "Total sequence represented by contigs."
+
+![Term]
+!id: SEQmeta:0000634
+!name: scaffold_genome_coverage
+!def: "????"
+
+
+[Term]
+id: SEQmeta:0000700
+name: annotation_of
+def: Attaches an annotation to an assembly build.
+
+
+

@@ -1,0 +1,32 @@
+format-version: 1.2
+data-version: releases/2016-01-17
+date: 17:01:2016
+default-namespace: genome_metadata_structure
+ontology: GMS
+
+[Term]
+id: GMS:0000001
+name: sampled_stock
+def: "Indicates a stock record for sampled plant or population"
+
+[Term]
+id: GMS:0000002
+name: bioproject
+def: "Indicates a GenBank BioProject"
+
+[Term]
+id: GMS:0000003
+name: biosample
+def: "Indicates a GenBank BioSample"
+
+[Term]
+id: GMS:0000004
+name: project_description
+def: "The project description"
+
+[Term]
+id: GMS:0000005
+name: analysis_type
+def: "Type of analysis, for example, genome assembly"
+
+
