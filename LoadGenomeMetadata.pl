@@ -90,10 +90,12 @@ print "project_id: $project_id\n";
     my $stock_id = loadExtendedProjectData($data, $project_id, \%stock_info, $dbh);
 print "stock_id: $stock_id\n";
     
+    # Sample information describes the actual material that was sequence
     my $nd_experiment_id = loadBioSampleData($data, $project_id, $stock_id, $dbh);
 print "nd_experiment_id: $nd_experiment_id\n";
     loadExtendedSampleData($data, $project_id, $stock_id, $nd_experiment_id, $dbh);
     
+    # Assembly information describes the assembly process and outcome
     my $analysis_id = loadWGSData($data, $project_id, $stock_id, $nd_experiment_id, $dbh);
 print "analysis_id: $analysis_id\n";
     loadAssemblyData($data, $project_id, $stock_id, $nd_experiment_id, $analysis_id, $dbh);
@@ -208,8 +210,10 @@ sub loadExtendedSampleData {
 sub loadAssemblyData {
   my ($data, $project_id, $stock_id, $nd_experiment_id, $analysis_id, $dbh) = @_;
   
-  my $dataset = $data->{'Sample_extended'};
+  my $dataset = $data->{'Assembly'};
   my @header = keys(%{$dataset->[0]});
+print "Assembly headers:\n" . Dumper(@header);
+print "Assembly data:\n" . Dumper($dataset );
   
   if (dataVerified('Assembly', \@header, $dataset, $dbh)) {
     my $row_count = 0;
@@ -319,10 +323,10 @@ print Dumper($data_rowref);
   createAnalysisProp($analysis_id, $data_rowref->{'seq_chemistry_version'}, 'seq_chemistry_version', $dbh);
   createAnalysisProp($analysis_id, $data_rowref->{'seq_quality_check'}, 'seq_quality_check', $dbh);
   createAnalysisProp($analysis_id, $data_rowref->{'chimera_check'}, 'chimera_check', $dbh);
+print "Loading finishing_strategy: [" . $data_rowref->{'finishing_strategy'} . "]\n";
   createAnalysisProp($analysis_id, $data_rowref->{'finishing_strategy'}, 'finishing_strategy', $dbh);
   createAnalysisProp($analysis_id, $data_rowref->{'genome_alignment'}, 'genome_alignment', $dbh);
   createAnalysisProp($analysis_id, $data_rowref->{'release_date'}, 'release_date', $dbh);
-print "Done\n";
 }#loadAssembly
 
 
@@ -334,6 +338,9 @@ sub loadAssemblyStats {
   createAnalysisProp($analysis_id, $data_rowref->{'aligned_seq_optical'}, 'aligned_seq_optical', $dbh);
   createAnalysisProp($analysis_id, $data_rowref->{'aligned_seq'}, 'aligned_seq', $dbh);
   createAnalysisProp($analysis_id, $data_rowref->{'gap_num', 'gap_num'}, $dbh);
+  createAnalysisProp($analysis_id, $data_rowref->{'assembly_size'}, 'assembly_size', $dbh);
+  createAnalysisProp($analysis_id, $data_rowref->{'scaffold_genome_coverage'}, 'scaffold_genome_coverage', $dbh);
+  
   createAnalysisProp($analysis_id, $data_rowref->{'total_gap_length'}, 'total_gap_length', $dbh);
   createAnalysisProp($analysis_id, $data_rowref->{'total_psuedomolecule_length'}, 'total_psuedomolecule_length', $dbh); 
 #TODO: don't know what this is
@@ -366,6 +373,7 @@ sub loadAssemblyStats {
 }#loadAssemblyStats
 
 
+=cut unused
 sub loadExperimentPub {
   my ($experiment_id, $pubstr, $type, $dbh) = @_;
   my ($sql, $sth, $row);
@@ -383,6 +391,7 @@ sub loadExperimentPub {
   elsif ($pubstr =~ /^http:\/\//) {
     $db = undef;
   }
+print "Experiment publicastion is in db [$db]\n";
   
   if (!$db) {
     createExperimentProp($experiment_id, $pubstr, 'ref_biomaterial', $dbh);
@@ -391,6 +400,7 @@ sub loadExperimentPub {
     createExperimentDbxref($experiment_id, $pubstr, $db, $dbh);
   }
 }#loadExperimentPub
+=cut
 
 
 sub loadGeoLocation {
@@ -429,16 +439,21 @@ sub loadBioProject {
  createProjectProp($project_id, 'Genome assembly', 'project_type', $dbh, 'genbank');
   
   # Project attributes
-  createProjectProp($project_id, $data_row{'project_description'}, 'project_description', $dbh, 'genome_metadata_structure');
+  createProjectProp($project_id, $data_row{'project_description'}, 'project_description', $dbh, 'SEQmeta');
   createProjectProp($project_id, $data_row{'locus_tag'}, 'annotation_prefix', $dbh, 'genbank');
-  createProjectProp($project_id, $data_row{'release_date'}, 'release_date', $dbh);
+  createProjectProp($project_id, $data_row{'release_date'}, 'release_date', $dbh, 'SEQmeta');
   createProjectProp($project_id, $data_row{'grants'}, 'funding', $dbh, 'genbank');
   createProjectProp($project_id, $data_row{'consortium'}, 'consortium', $dbh, 'genbank');
+  createProjectProp($project_id, $data_row{'consortium_URL'}, 'consortium_URL', $dbh, 'genbank');
   createProjectProp($project_id, $data_row{'data_provider'}, 'data_provider', $dbh, 'genbank');
   createProjectProp($project_id, $data_row{'data_provider_URL'}, 'data_provider_URL', $dbh, 'genbank');
+print "Load submitting information: [".$data_row{'submitting_organization'}."], [".$data_row{'submitting_organization_URL'}."]\n";
+  createProjectProp($project_id, $data_row{'submitting_organization'}, 'submitting_organization', $dbh, 'genbank');
+  createProjectProp($project_id, $data_row{'submitting_organization_URL'}, 'submitting_organization_URL', $dbh, 'genbank');
 
   # Handle project publication
   loadProjectPub($project_id, $data_row{'publication_PMID'}, 'PMID', $dbh);
+print "Load publication DOI: [" . $data_row{'publication_DOI'} . "]\n";
   loadProjectPub($project_id, $data_row{'publication_DOI'}, 'DOI', $dbh);
 
   # Database-specific items
@@ -515,9 +530,11 @@ sub loadExtendedProject {
 
   # Add extended project data
   createProjectProp($project_id, $data_row{'investigation_type'}, 'investigation_type', $dbh);
+  createProjectProp($project_id, $data_row{'project_PI'}, 'project_PI', $dbh);
   createProjectProp($project_id, $data_row{'contributors'}, 'contributors', $dbh);
   createProjectProp($project_id, $data_row{'project_start_date'}, 'project_start_date', $dbh);
   createProjectProp($project_id, $data_row{'extrachrom_elements'}, 'extrachrom_elements', $dbh);
+  createProjectProp($project_id, $data_row{'estimated_size'}, 'estimated_size', $dbh);
   createProjectProp($project_id, $data_row{'ancestral_data'}, 'ancestral_data', $dbh);
   createProjectProp($project_id, $data_row{'source_mat_id'}, 'source_mat_id', $dbh);
   createProjectProp($project_id, $data_row{'source_mat_derived_id'}, 'source_mat_derived_id', $dbh);
@@ -625,7 +642,7 @@ sub loadWGS {
   my $analysis_id = createAnalysis($data_rowref->{'assembly_name'},
                                    $data_rowref->{'assembly'},
                                    '', '', $dbh);
-  createAnalysisProp($analysis_id, 'Genome assembly', 'analysis_type', $dbh, 'genome_metadata_structure');
+  createAnalysisProp($analysis_id, 'Genome assembly', 'analysis_type', $dbh, 'tripal_analysis');
   createProjectAnalysis($project_id, $analysis_id, $dbh);
 
   my $dbxref_id = createDbXref($data_rowref->{'BioProject'}, 'GenBank:BioProject', $dbh);
