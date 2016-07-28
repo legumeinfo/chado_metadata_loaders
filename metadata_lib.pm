@@ -924,6 +924,7 @@ sub readHeaders {
     my $cell = $sheet->{Cells}[$row][$col];
     if ($cell && $cell->Value() ne '') {
       my $header = $cell->Value();
+      $header =~ s/^\*//;
       push @headers, $header;
     }
     else {
@@ -951,10 +952,8 @@ sub readRow {
     if (my $cell = $sheet->{Cells}[$row][$col]) {
       my $value = $cell->Value();
       $value =~ s/'/''/g;
-#      $value =~ s/"/""/g;
       if ($value && $value ne '' && lc($value) ne 'null') {
         my $header = $headers[$col];
-        $header =~ s/\*//;
         $data_row{$header} = $value;
       }
     }
@@ -977,7 +976,6 @@ sub readWorksheet {
        $row_num++) {
     if (!@headers || $#headers == 0) {
       @headers = readHeaders($sheet, $row_num);
-
     }
     else {
       my $data_row = readRow($sheet, $row_num, @headers, $dbh);
