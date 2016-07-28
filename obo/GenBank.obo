@@ -15,11 +15,6 @@ name: locus_tag
 def: "Prefix for every gene in genome"
 
 [Term]
-id: GB:0000003
-name: release_date
-def: "Date that data associated with BioProject is released."
-
-[Term]
 id: GB:0000004
 name: funding
 def: "List of grants that supported the project"
@@ -31,18 +26,33 @@ def: "Project consortium"
 
 [Term]
 id: GB:0000006
+name: consortium_URL
+def: "URL for consortium"
+
+[Term]
+id: GB:0000007
 name: data_provider
 def: "Name(s) of data provider(s)"
 
 [Term]
-id: GB:0000007
+id: GB:0000008
 name: data_provider_URL
 def: "URL for data provider"
 
 [Term]
-id: GB:0000008
+id: GB:0000009
 name: genome_coverage
 def: "nX coverage, e.g. 100X."
+
+[Term]
+id: GB:0000010
+name: submitting_organization
+def: "Name of organization responsible for submission."
+
+[Term]
+id: GB:0000011
+name: submitting_organization_URL
+def: "URL for organization responsible for submission."
 
 
 

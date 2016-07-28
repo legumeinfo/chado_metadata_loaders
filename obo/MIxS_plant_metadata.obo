@@ -803,10 +803,15 @@ id: SEQmeta:0000633
 name: total_contig_length
 def: "Total sequence represented by contigs."
 
-![Term]
-!id: SEQmeta:0000634
-!name: scaffold_genome_coverage
-!def: "????"
+[Term]
+id: SEQmeta:0000634
+name: assembly_size
+def: "Total sequence represented by assembly."
+
+[Term]
+id: SEQmeta:0000635
+name: scaffold_genome_coverage
+def: "Total genome coverage represented by scaffolds"
 
 
 [Term]

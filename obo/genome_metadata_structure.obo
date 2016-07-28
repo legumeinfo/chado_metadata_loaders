@@ -19,14 +19,4 @@ id: GMS:0000003
 name: biosample
 def: "Indicates a GenBank BioSample"
 
-[Term]
-id: GMS:0000004
-name: project_description
-def: "The project description"
-
-[Term]
-id: GMS:0000005
-name: analysis_type
-def: "Type of analysis, for example, genome assembly"
-
 
