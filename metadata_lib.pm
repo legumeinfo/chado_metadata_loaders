@@ -627,7 +627,7 @@ sub createProjectRelationship {
 
 
 sub createStock {
-  my ($name, $uniquename, $organism_id, $dbxref_id, $dbh) = @_;
+  my ($name, $uniquename, $stock_type, $organism_id, $dbxref_id, $dbh) = @_;
   my ($sql, $row);
 
   my $stock_id;
@@ -637,8 +637,8 @@ sub createStock {
     SELECT stock_id FROM stock 
     WHERE organism_id=$organism_id
           AND type_id=(SELECT cvterm_id FROM cvterm
-                      WHERE name='sampled_stock'
-                            AND cv_id=(SELECT cv_id FROM cv WHERE name='genome_metadata_structure'))
+                       WHERE name='$stock_type'
+                             AND cv_id=(SELECT cv_id FROM cv WHERE name='stock_type'))
           AND uniquename='$uniquename'";
   if ($row=doQuery($sql, 1, $dbh)) {
     $stock_id = $row->{'stock_id'};
@@ -659,8 +659,8 @@ sub createStock {
          '$uniquename',
          '',
          (SELECT cvterm_id FROM cvterm
-          WHERE name='sampled_stock'
-                AND cv_id=(SELECT cv_id FROM cv WHERE name='genome_metadata_structure'))
+          WHERE name='Accession'
+                AND cv_id=(SELECT cv_id FROM cv WHERE name='stock_type'))
         )
       RETURNING stock_id";
     $row = doQuery($sql, 1, $dbh);

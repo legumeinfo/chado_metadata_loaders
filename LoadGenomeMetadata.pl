@@ -55,7 +55,6 @@ EOS
   else {
     $data = readTableFiles($input);
   }
-#print Dumper($data);
   
   require('dbconnect.pl');
   my $connect_str = &getConnectString; # (defined in dbconnect.pl)
@@ -154,7 +153,9 @@ sub loadExtendedProjectData {
     print "\nLoading Project_extended data...\n";
     # NOTE: although looping over rows, not set up for multiple Project_extended  
     #       records per spreadsheet.
+print "\n\nAll rows:\n" . Dumper($dataset);
     for (my $row=0; $row<(scalar @$dataset); $row++) {
+print "\n\nWork on this row:\n" . Dumper($dataset->[$row]);
       $stock_id = loadExtendedProject($project_id, $dataset->[$row], $stock_inforef, $dbh);
       $row_count++;
     }#each row
@@ -273,6 +274,31 @@ sub loadWGSData {
 ################################################################################
 #                             supporting functions                             #
 ################################################################################
+
+sub decodeSourceMatId {
+  my $source_mat_id = $_[0];
+  my ($accession, $source);
+print "decode [$source_mat_id]\n";
+  
+  if ($source_mat_id =~ /acc:(.*?);/) {
+    $accession = $1;
+print "found accession: [$accession]\n";
+  }
+  if ($source_mat_id =~ /source:(.*?);/) {
+    $source = $1;
+print "found source: [$source]\n";
+  }
+  
+  if (!$accession && !$source) {
+    print "ERROR: unable to decode source_mat_id. \n";
+    print "       Format should be 'acc:<accession>;source:<source>;'\n";
+    print "       But was '$source_mat_id'\n";
+    exit;
+  }
+  
+  return ($accession, $source);
+}#decodeSourceMatId
+
 
 sub getAllSpreadsheetRows {
   my $worksheet = @_[0];
@@ -554,10 +580,10 @@ sub loadExtendedProject {
                       $data_row{'bioproject_accession'}, 
                       'GenBank:BioProject', $dbh);
 
-  # Create stock record to represent subject
+  # Find/create stock record to represent subject
   my ($stock_id, $dbxref_id);
 
-  # Is there a PI number in the source_mat_id?
+  # Is there an accession in the source_mat_id?
   my $dbxref;
   if ($data_rowref->{'source_mat_id'} =~ /(PI\s+\d+)/) {
     my $pi_num = $1;
@@ -573,9 +599,17 @@ sub loadExtendedProject {
     $name .= ' (' . $data_rowref->{'subspecific_genetic_lineage'} . ')';
   }
   
+  # Extract information from the source_mat_id field
+  my ($stock_name, $source_name) = decodeSourceMatId($data_rowref->{'source_mat_id'});
+print "Decoded source_mat_id into '$stock_name', '$source_name'\n";
+  
   # Get/create stock record
-  $stock_id = createStock($name, $data_rowref->{'source_mat_id'}, 
+  $stock_id = createStock($stock_name, $stock_name, 'Accession', 
                           $stock_inforef->{'organism_id'}, $dbxref_id, $dbh);
+  # Indicate that this stock has been sampled
+  createStockProp($stock_id, '', 'sampled_stock', $dbh, 'genome_metadata_structure');
+
+#TODO: decide what to do with source information
 
   # Also save source_mat_id as a property (might decide to use a different 
   #   uniquename down the road).
@@ -775,10 +809,11 @@ sub readTableFiles {
       else {
         my @fields = split /\t/;
         next if ((scalar @fields) == 0);
-        if ((scalar @fields) < (scalar @heads)) {
-          print "WARNING: Row $count of $file has too few fields. Skipping. \n";
-          next;
-        }
+# Unsure how to handle this as often this is okay
+#        if ((scalar @fields) < (scalar @heads)) {
+#          print "WARNING: Row $count of $file has too few fields. Skipping. \n";
+#          next;
+#        }
         
         for (my $i=0; $i<(scalar @heads); $i++) {
           if ($fields[$i] ne '' && $fields[$i] ne 'NULL') {
