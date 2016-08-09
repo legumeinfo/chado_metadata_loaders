@@ -629,6 +629,8 @@ sub createProjectRelationship {
 sub createStock {
   my ($name, $uniquename, $stock_type, $organism_id, $dbxref_id, $dbh) = @_;
   my ($sql, $row);
+print "createStock($name, $uniquename, $stock_type, $organism_id, $dbxref_id, $dbh)\n";
+print "organism is $organism_id\n";
 
   my $stock_id;
   

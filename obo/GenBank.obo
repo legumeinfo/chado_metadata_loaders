@@ -54,5 +54,15 @@ id: GB:0000011
 name: submitting_organization_URL
 def: "URL for organization responsible for submission."
 
+[Term]
+id: GB:0000012
+name: contributors
+def: "Full list of people who contributed to project."
+
+[Term]
+id: GB:0000013
+name: project_description
+def: "Free text description of the project."
+
 
 

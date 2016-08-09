@@ -31,16 +31,6 @@ name: project_PI
 def: "Name of the principal investigator for the project."
 
 [Term]
-id: SEQmeta:0000006
-name: contributors
-def: "List of names of contributors to this project."
-
-[Term]
-id: SEQmeta:0000007
-name: project_description
-def: "Free text description of the project."
-
-[Term]
 id: SEQmeta:0000008
 name: project_start_date
 def: "Date work on the project started".
@@ -49,8 +39,6 @@ def: "Date work on the project started".
 id: SEQmeta:0000009
 name: publication
 def: "A publication associated with a project (or any other data type)".
-
-
 
 [Term]
 id: SEQmeta:0000100

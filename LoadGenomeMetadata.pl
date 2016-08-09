@@ -465,7 +465,7 @@ sub loadBioProject {
  createProjectProp($project_id, 'Genome assembly', 'project_type', $dbh, 'genbank');
   
   # Project attributes
-  createProjectProp($project_id, $data_row{'project_description'}, 'project_description', $dbh, 'SEQmeta');
+  createProjectProp($project_id, $data_row{'project_description'}, 'project_description', $dbh, 'genbank');
   createProjectProp($project_id, $data_row{'locus_tag'}, 'annotation_prefix', $dbh, 'genbank');
   createProjectProp($project_id, $data_row{'release_date'}, 'release_date', $dbh, 'SEQmeta');
   createProjectProp($project_id, $data_row{'grants'}, 'funding', $dbh, 'genbank');
@@ -557,7 +557,7 @@ sub loadExtendedProject {
   # Add extended project data
   createProjectProp($project_id, $data_row{'investigation_type'}, 'investigation_type', $dbh);
   createProjectProp($project_id, $data_row{'project_PI'}, 'project_PI', $dbh);
-  createProjectProp($project_id, $data_row{'contributors'}, 'contributors', $dbh);
+  createProjectProp($project_id, $data_row{'contributors'}, 'contributors', $dbh, 'genbank');
   createProjectProp($project_id, $data_row{'project_start_date'}, 'project_start_date', $dbh);
   createProjectProp($project_id, $data_row{'extrachrom_elements'}, 'extrachrom_elements', $dbh);
   createProjectProp($project_id, $data_row{'estimated_size'}, 'estimated_size', $dbh);
@@ -604,6 +604,7 @@ sub loadExtendedProject {
 print "Decoded source_mat_id into '$stock_name', '$source_name'\n";
   
   # Get/create stock record
+print "stock info ref:\n" . Dumper($stock_inforef);
   $stock_id = createStock($stock_name, $stock_name, 'Accession', 
                           $stock_inforef->{'organism_id'}, $dbxref_id, $dbh);
   # Indicate that this stock has been sampled

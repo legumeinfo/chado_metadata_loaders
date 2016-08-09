@@ -77,4 +77,19 @@ VALUES
    'https://www.ncbi.nlm.nih.gov/nuccore/')
 ;
 
-
+INSERT INTO dbxref
+  (db_id, accession, description)
+VALUES
+  ((SELECT db_id FROM db WHERE name='tripal'),
+   'accession',
+   'A stock which exists as an accession at a stock center or germplasm bank.')
+;
+INSERT INTO cvterm
+  (cv_id, name, definition, dbxref_id)
+VALUES
+  ((SELECT cv_id FROM cv WHERE name='stock_type'),
+  'Accession',
+  'A stock which exists as an accession at a stock center or germplasm bank.',
+  (SELECT dbxref_id FROM dbxref WHERE accession='accession')
+  )
+;
