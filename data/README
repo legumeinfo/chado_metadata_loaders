@@ -1,0 +1,4 @@
+The files in this directory were used to populate the Chado schema with metadata. 
+These files may be either text or Excel spreadsheets, but for text files, the
+the Excel spreadsheets used to create the files likely live elsewhere, but should 
+have the same name as the folder containing worksheets dumped as text.

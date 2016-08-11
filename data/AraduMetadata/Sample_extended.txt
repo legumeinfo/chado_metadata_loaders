@@ -1,0 +1,5 @@
+#	MIxS/Plant extension (not part of BioSample record as of Feb 2016)	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	
+Genome	*biosample_id	ref_biomaterial	body_phenotype	life_stage	height	length	*plant_structure	sample_temperature	sample_storage_duration	sample_storage_location	depth	env_biome	env_feature	env_material	treatment	
+NULL	SAMN02982871	NULL	NULL	NULL	NULL	NULL	PO:0000003	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	
+NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	
+NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	
