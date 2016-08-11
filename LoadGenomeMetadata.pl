@@ -253,7 +253,7 @@ sub loadWGSData {
   
   my $analysis_id;
   
-  my $dataset = $data->{'Sample_extended'};
+  my $dataset = $data->{'WGS'};
   my @header = keys(%{$dataset->[0]});
     
   if (dataVerified('WGS', \@header, $dataset, $dbh)) {
@@ -674,9 +674,9 @@ sub loadWGS {
 
   my $analysis_id;
 
-  my $analysis_id = createAnalysis($data_rowref->{'assembly_name'},
-                                   $data_rowref->{'assembly'},
-                                   '', '', $dbh);
+  # NOTE: no analysis description
+  my $analysis_id = createAnalysis($data_rowref->{'assembly_name'}, '', '', '', $dbh);
+  
   createAnalysisProp($analysis_id, 'Genome assembly', 'analysis_type', $dbh, 'tripal_analysis');
   createProjectAnalysis($project_id, $analysis_id, $dbh);
 
@@ -686,10 +686,11 @@ sub loadWGS {
   my $dbxref_id = createDbXref($data_rowref->{'BioSample'}, 'GenBank:BioSample', $dbh);
   attachAnalysisDbXref($analysis_id, $dbxref_id, $dbh);
   
-  createAnalysisProp($analysis_id, $data_rowref->{'Assembly_date'},    'assembly_date', $dbh);
-  createAnalysisProp($analysis_id, $data_rowref->{'Assembly_methods'}, 'assembly_methods', $dbh);
-  createAnalysisProp($analysis_id, $data_rowref->{'Assembly_name'},    'assembly_name', $dbh);
+  createAnalysisProp($analysis_id, $data_rowref->{'assembly_date'},    'assembly_date', $dbh, 'genbank');
+  createAnalysisProp($analysis_id, $data_rowref->{'assembly_methods'}, 'seq_meth', $dbh);
+  createAnalysisProp($analysis_id, $data_rowref->{'assembly_name'},    'assembly_name', $dbh);
   createAnalysisProp($analysis_id, $data_rowref->{'genome_coverage'},  'genome_coverage', $dbh, 'genbank');
+  createAnalysisProp($analysis_id, $data_rowref->{'sequencing_technologies'},  'sequencing_technologies', $dbh, 'genbank');
   
   return $analysis_id;
 }#loadWGS

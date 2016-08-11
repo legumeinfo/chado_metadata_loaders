@@ -178,7 +178,7 @@ sub attachProjectDbXref {
 sub createAnalysis {
   my ($analysis_name, $description, $method, $version, $dbh) = @_;
   my ($sql, $row);
-print "create analysis record with $dbh\n";
+print "create analysis record with ($analysis_name, $description, $method, $version, $dbh)\n";
   
   my $analysis_id;
   
@@ -441,6 +441,9 @@ sub createGeoLocation  {
   
   my $nd_geolocation_id;
   
+  $geo_locationstr =~ s/^\"//;
+  $geo_locationstr =~ s/\"$//;
+  
   my $geo_lat_clause = (!$geo_lat || $geo_lat eq '') ? 'IS NULL' : "='$geo_lat'";
   my $geo_lon_clause = (!$geo_lon || $geo_lon eq '') ? 'IS NULL' : "='$geo_lon'";
   my $geo_alt_clause = (!$geo_alt || $geo_alt eq '') ? 'IS NULL' : "='$geo_alt'";
@@ -567,10 +570,15 @@ sub createProjectDbxref {
 sub createProjectProp {
   my ($project_id, $value, $type, $dbh, $cv) = @_;
   my ($sql, $row);
+print "Create projectprop for [$value]\n";
   
   if (!$cv) { $cv = 'SEQmeta'; }
   
   return if (!$value || $value eq '');
+  
+  $value =~ s/^\"//;
+  $value =~ s/\"$//;
+print "value changed to [$value]\n";
 
   $sql = "
     SELECT projectprop_id FROM projectprop

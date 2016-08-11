@@ -64,5 +64,14 @@ id: GB:0000013
 name: project_description
 def: "Free text description of the project."
 
+[Term]
+id: GB:0000014
+name: sequencing_technologies
+def: "Technology(ies) used in sequencing project."
+
+[Term]
+id: GB:0000015
+name: assembly_date
+def: "Date of assembly process (start or end)."
 
 
