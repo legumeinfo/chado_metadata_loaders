@@ -509,7 +509,13 @@ sub loadBioSample {
   my $geolocation_id = loadGeoLocation($data_rowref->{'geo_location'}, 
                                        $data_rowref->{'lat'}, $data_row{'lon'},
                                        $data_rowref->{'alt_elv'}, $dbh);
-
+  if (!$geolocation_id) {
+    print "ERROR: No location information given for sample.\n";
+    print "If no location is available, then record location as 'unknown'.\n";
+    print "Unable to continue.\n\n";
+    exit;
+  }
+  
   my $nd_experiment_id = createExperiment($project_id, $geolocation_id, 'biosample', $dbh);
   attachExperimentProject($nd_experiment_id, $project_id, $dbh);
   
