@@ -402,6 +402,8 @@ sub createExperimentProp {
   return if (!$value || $value eq '');
   
   if (!$cv) { $cv = 'SEQmeta'; }
+  
+  $value = $dbh->quote($value);
 
   $sql = "
     SELECT nd_experimentprop_id FROM nd_experimentprop
@@ -415,7 +417,7 @@ sub createExperimentProp {
   
     $sql = "
       UPDATE nd_experimentprop
-        SET value='$value'
+        SET value=$value
       WHERE nd_experimentprop_id=$nd_experimentprop_id";
   }
   else {
@@ -423,7 +425,7 @@ sub createExperimentProp {
       INSERT INTO nd_experimentprop
         (nd_experiment_id, value, type_id)
       VALUES
-        ($nd_experiment_id, '$value', 
+        ($nd_experiment_id, $value, 
          (SELECT cvterm_id FROM cvterm 
                          WHERE name='$type'
                                AND cv_id=(SELECT cv_id FROM cv
