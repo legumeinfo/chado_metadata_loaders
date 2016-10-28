@@ -55,6 +55,7 @@ EOS
   else {
     $data = readTableFiles($input);
   }
+#print "ALL DATA:\n" . Dumper($data);
   
   require('dbconnect.pl');
   my $connect_str = &getConnectString; # (defined in dbconnect.pl)
@@ -97,6 +98,7 @@ print "nd_experiment_id: $nd_experiment_id\n";
     # Assembly information describes the assembly process and outcome
     my $analysis_id = loadWGSData($data, $project_id, $stock_id, $nd_experiment_id, $dbh);
 print "analysis_id: $analysis_id\n";
+
     loadAssemblyData($data, $project_id, $stock_id, $nd_experiment_id, $analysis_id, $dbh);
     loadAssemblyStatsData($data, $analysis_id, $dbh);
   
@@ -173,6 +175,8 @@ sub loadBioSampleData {
   
   my $dataset = $data->{'BioSample'};
   my @header = keys(%{$dataset->[0]});
+#print "BioSample headers:\n" . Dumper(@header);
+#print "BioSample data:\n" . Dumper($dataset );
 
   if (dataVerified('BioSample', \@header, $dataset, $dbh)) {
     my $row_count = 0;
@@ -255,7 +259,9 @@ sub loadWGSData {
   
   my $dataset = $data->{'WGS'};
   my @header = keys(%{$dataset->[0]});
-    
+print "WGS headers:\n" . Dumper(@header);
+print "WGS data:\n" . Dumper($dataset );
+
   if (dataVerified('WGS', \@header, $dataset, $dbh)) {
     my $row_count = 0;
     print "\nLoading WGS data...\n";
@@ -314,20 +320,9 @@ sub isNull {
 }#isNull
 
 
-sub loadAnalysis {
-  my ($dbh) = @_;
-print "loadAnalysis is not yet implemented.\n";
-exit;
-  # NOTE: a property of type 'analysis_visibility' must be attached and have
-  #       the value 'show'
-  # NOTE: a property of type 'analysis_type' and value 'gene model functional 
-  #       annotation' must be attached.
-}#loadAnalysis
-
-
 sub loadAssembly {
   my ($project_id, $stock_id, $nd_experiment_id, $analysis_id, $data_rowref, $dbh) = @_;
-print Dumper($data_rowref);
+print "Assembly row:\n" . Dumper($data_rowref);
 
   updateAnalysisMethod($analysis_id, $data_rowref->{'seq_meth'}, 'n/a', $dbh);
 
@@ -399,40 +394,11 @@ sub loadAssemblyStats {
 }#loadAssemblyStats
 
 
-=cut unused
-sub loadExperimentPub {
-  my ($experiment_id, $pubstr, $type, $dbh) = @_;
-  my ($sql, $sth, $row);
-  
-  return if (!$pubstr || $pubstr eq '');
-  
-  # pubstr might be a PMID, DOI or URL
-  my $db;
-  if ($pubstr =~ /^\d+$/) {
-    $db = 'PMID';
-  }
-  elsif ($pubstr =~ /^doi:/) {
-    $db = 'DOI';
-  }
-  elsif ($pubstr =~ /^http:\/\//) {
-    $db = undef;
-  }
-print "Experiment publicastion is in db [$db]\n";
-  
-  if (!$db) {
-    createExperimentProp($experiment_id, $pubstr, 'ref_biomaterial', $dbh);
-  }
-  else {
-    createExperimentDbxref($experiment_id, $pubstr, $db, $dbh);
-  }
-}#loadExperimentPub
-=cut
-
-
 sub loadGeoLocation {
   my ($geo_locationstr, $geo_lat, $geo_lon, $geo_alt, $dbh) = @_;
   my ($sql, $row);
-  
+print "loadGeoLocation($geo_locationstr, $geo_lat, $geo_lon, $geo_alt, $dbh)\n";
+
   my ($geo_lat_clause, $geo_lon_clause, $geo_alt_clause);
   if ((!$geo_locationstr || $geo_locationstr eq '') &&
       (!$geo_lat || $geo_lat eq '') &&
@@ -503,6 +469,7 @@ print "\nOrganism name: " . $data_row{'organism_name'} . "\n";
 sub loadBioSample {
   my ($project_id, $stock_id, $data_rowref, $dbh) = @_;
   my %data_row = %$data_rowref;
+print "BioSample row:\n" . Dumper($data_rowref);
 
   # Set the geolocation. 
   #   Note that 'lat' and 'lon' are set from 'lat_lon' in verification code.
@@ -795,6 +762,7 @@ sub readTableFiles {
   my %data;
   
   foreach my $worksheet_name (@worksheet_names) {
+#print "Read worksheet $worksheet_name\n";
     my $file = "$input/$worksheet_name.txt";
     my @rows;
     my @heads;
@@ -811,17 +779,12 @@ sub readTableFiles {
       next if (/^#/);
       chomp;chomp;
       
-      if (!@heads) {
+      if (!@heads || (scalar @heads < 2)) {
         @heads = readTableHeads($_);
       }
       else {
         my @fields = split /\t/;
         next if ((scalar @fields) == 0);
-# Unsure how to handle this as often this is okay
-#        if ((scalar @fields) < (scalar @heads)) {
-#          print "WARNING: Row $count of $file has too few fields. Skipping. \n";
-#          next;
-#        }
         
         for (my $i=0; $i<(scalar @heads); $i++) {
           if ($fields[$i] ne '' && $fields[$i] ne 'NULL') {
@@ -841,7 +804,6 @@ sub readTableFiles {
     $data{$worksheet_name} = [@rows];
   }#each file
   
-
   return \%data;
 }#readTableFiles
 
@@ -850,6 +812,20 @@ sub readTableHeads {
   my $row = $_[0];
   if ($row) {
     chomp;chomp;
+    
+    if ($row =~/^#/) {
+print "Not header row: $row\n";
+      # Skip this row
+      return 0;
+    }
+
+    if (!($row =~/^genome/i)) {
+print "Not header row: $row\n";
+      # Not the header row
+      return 0;
+    }
+print "Found header row: $row\n";
+  
     my @heads = split /\t/, $row;
     for (my $i=0;$i<=$#heads; $i++) {
        $heads[$i] =~ s/\*//;
@@ -857,7 +833,7 @@ sub readTableHeads {
     return @heads;
   }
   else {
-    return undef;
+    return 0;
   }
 }#readTableHeads
 
