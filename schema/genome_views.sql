@@ -24,7 +24,7 @@ SELECT distinct cp.nid AS project_nid, p.project_id AS project_id,
            INNER JOIN analysisprop ap ON ap.analysis_id=a.analysis_id
            INNER JOIN cvterm apt ON apt.cvterm_id=ap.type_id
            LEFT JOIN public.chado_analysis ca ON ca.analysis_id=a.analysis_id
-         WHERE ap.value='Genome assembly' AND apt.name='analysis_type'
+         WHERE ap.value='genome assembly' AND apt.name='analysis_type'
         ) p_a ON p_a.project_id=p.project_id
     INNER JOIN nd_experiment_project ep ON ep.project_id=p.project_id
     INNER JOIN nd_experiment e ON e.nd_experiment_id=ep.nd_experiment_id
