@@ -2,6 +2,8 @@
 
 Scripts, data mappings and files, and ontologies for loading metadata into Chado.
 
+**The corresponding Tripal module is legume_?.**
+
 *data/* contains files that have been loaded <br>
 *obo/* contains ontologies need to support data mapping and describing metadata fields <br>
 *schema/* contains information about the data mapping. 
