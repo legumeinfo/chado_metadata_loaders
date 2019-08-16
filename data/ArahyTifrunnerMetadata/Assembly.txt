@@ -1,0 +1,4 @@
+Genome	*assembly_name	seq_service_provider	nucl_acid_ext	nucl_acid_amp	library_ID	library_type	lib_size	lib_reads_seqd	lib_const_meth	lib_vector	lib_screen	mid	adapters	pcr_cond	*seq_meth	seq_hardware	seq_chemistry	seq_chemistry_version	seq_quality_check	chimera_check	*assembly	*finishing_strategy	genome_alignment	alignment_genome_accession	*release_date	NULL	NULL	NULL	NULL	
+NULL	arahy.Tifrunner.gnm1.KYV3	HudsonAlpha Institute of Biotechnology	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	PacBio RSII and Illumina HiSeq	NULL	NULL	NULL	NULL	NULL	NULL	Complete draft genome	NULL	NULL	Dec, 2017	NULL	NULL	NULL	NULL	
+NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	
+NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	
